@@ -7,14 +7,14 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 
 // Layout for the drawer navigation 
-export default function Layout() {
+export default function Layout() { 
   
   return (
     <Drawer
       screenOptions={{
         headerShown: true,//display header for all screens
-        drawerActiveTintColor: '#1629fa', //Color text & icon when active
-        drawerInactiveTintColor: '#070b38',//Color text & icon when inactive
+        drawerActiveTintColor: '#1629fa', 
+        drawerInactiveTintColor: '#070b38',
         drawerLabelStyle: {
           fontSize: 16,//Font size for drawer labels
           fontWeight: 'bold',//Font weight of drawer labels
