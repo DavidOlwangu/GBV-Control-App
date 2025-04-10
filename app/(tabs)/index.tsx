@@ -3,7 +3,15 @@ import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-na
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.text}>GBV CONTROL</Text>
+      <Text style={{
+        color: 'purple',
+        fontSize: 30,
+        fontWeight: 'bold',
+      }}>Welcome To EquaGender</Text>
+      <Text style={{
+              color: 'black',
+              fontSize: 18,
+              fontWeight: 'bold',}}>Where Awareness meets Action</Text>
       <View>
         <View style={{
           backgroundColor:'rgb(245, 244, 248)',
@@ -12,36 +20,35 @@ export default function HomeScreen() {
           alignItems:'center',
           borderRadius: 5,
           elevation: 10,
-          width: 450,
-          height: 320,
+          width: 480,
+          height: 350,
 
         }}>
           <Text style={{
-            fontSize: 28,
+            fontSize: 20,
             color: '#1629fa',
             fontWeight: 'bold',
             textAlign:'center',
             marginBottom:10,
           }}
 
-          >Emergency Alert</Text>
-          <Text>Send an Emergency message to your emergency contact</Text>
-          <TouchableOpacity style={{
-            alignItems:'center',
-            justifyContent:'center',
+          >Empowering Survivors and Protecting Communituies</Text>
+          <Text style={{
+            fontSize: 16,
+            color: '#03012d',
+            textAlign:'center',
+            fontWeight: 'medium',
             padding: 10,
-            margin:10,
-            backgroundColor: '#1629fa',
-            borderRadius: 5,
-            marginTop:40,
-            
-          }}>
-            <Text style={{
-              color: '#fff',
-              fontSize: 24,
-              fontWeight: 'bold',
-            }}>Send  message</Text>
-          </TouchableOpacity>
+            marginBottom:10,
+          }}>EquaGender is a confidential platform designed to support individuals affected by gender-based violence. Whether you're reporting an incident, seeking guidance, or accessing resources, We are here to help you feel heard, safe, and supported. Your voice matters—and every report brings us closer to ending GBV and building safer communities for all.</Text>
+
+<Text style={{
+            fontSize: 16,
+            color: '#191970',
+            textAlign:'center',
+            padding: 10,
+            marginBottom:10,
+          }}>Start the journey.Stand together. Be Aware & Empowered...Let's Kill GBV</Text>
         </View>
       </View>
     </SafeAreaView>
