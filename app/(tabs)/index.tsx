@@ -1,9 +1,14 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity,ScrollView } from 'react-native';
+import Header from '@/components/Header';
+import MakeCall from '@/components/makeCall';
 
 export default function HomeScreen() {
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView >
+      <Header/>
+      <ScrollView>
+        <View style={styles.container}>
       <Text style={{
         color: 'purple',
         fontSize: 30,
@@ -52,6 +57,9 @@ export default function HomeScreen() {
           }}>Start the journey.Stand together. Be Aware & Empowered...Let's Kill GBV</Text>
         </View>
       </View>
+      </View>
+      <MakeCall/>
+      </ScrollView>
     </SafeAreaView>
   );
 }

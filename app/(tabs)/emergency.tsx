@@ -1,46 +1,30 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, ScrollView } from 'react-native';
+import EmergencyContacts from '@/components/EmergencyContacts';
+import MakeCall from '@/components/makeCall';
+import Header from '@/components/Header';
+
 
 export default function Emergency(){
     return(
-        <View style={styles.container}>
-            <Text style={styles.title}>Emergency Contacts</Text>
-        </View>
+        <SafeAreaView style={styles.container}>
+            <Header/>
+          <ScrollView> 
+            
+            <MakeCall/>
+            <EmergencyContacts/>
+        </ScrollView>
+        </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
     container: { 
-        flex: 1, 
-        padding: 20 
+         
+        flex: 1,
+        backgroundColor:'white',
+
+      
     },
-    title: { 
-        fontSize: 24, 
-        fontWeight: 'bold', 
-        marginBottom: 20 },
-    input: {
-        height: 40,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 20,
-        paddingLeft: 10,
-    },
-    button: {  
-        backgroundColor: '#007BFF',
-        padding: 10,
-        alignItems: 'center',
-        borderRadius: 5,
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 16,
-    },
-    icon: {
-        fontSize: 100,
-        color: 'black',
-    },
-    text: {
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
+    
 })

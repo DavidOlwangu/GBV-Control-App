@@ -1,12 +1,15 @@
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-
+import { View, Text, StyleSheet, ScrollView,SafeAreaView} from 'react-native';
+import Header from '@/components/Header';
 
 export default function Community() {
   return (
-    <View style={styles.container}>
+    <SafeAreaView>
+      <Header/>
+      <ScrollView  style={styles.container}>
       <Text style={styles.title}>Community Support</Text>
-    </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 

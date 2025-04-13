@@ -1,22 +1,26 @@
 import React from 'react';
-import { View, Text, TextInput, StyleSheet, Button } from 'react-native';
+import { View, Text, TextInput, StyleSheet, Button, SafeAreaView, ScrollView } from 'react-native';
+import Header from '@/components/Header';
 
 export default function Report() {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Report a Case</Text>
-            <TextInput
-                style={styles.input}
-                placeholder="Enter details of the case"
-                multiline
-                numberOfLines={4}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Enter location"
-            />
-            <Button title="Submit" onPress={() => {}} />
-        </View>
+        <SafeAreaView >
+            <Header/>
+            <ScrollView style={styles.container}>
+                <Text style={styles.title}>Report a Case</Text>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter details of the case"
+                    multiline
+                    numberOfLines={4}
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter location"
+                />
+                <Button title="Submit" onPress={() => {}} />
+             </ScrollView>
+        </SafeAreaView>
     );
 }
 
