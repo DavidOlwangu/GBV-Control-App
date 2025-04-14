@@ -4,7 +4,7 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 
 export default function MakeCall() {
   const handleEmergencyCall = () => {
-    Linking.openURL('tel:123'); // Or your emergency number
+    Linking.openURL('tel'); // Or your emergency number
   };
 
   return (
