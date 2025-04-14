@@ -13,7 +13,7 @@ export default function MakeCall() {
       <View style={styles.viewBox}>
         <Text style={styles.viewTitle}>Call for Help</Text>
         <TouchableOpacity style={styles.callButton} onPress={handleEmergencyCall}>
-           <Ionicons name="call-outline" size={24} color='black' />
+           <Ionicons name="call-outline" size={24} color='white' />
           <Text style={styles.callButtonText}>Emergency Call</Text>
         </TouchableOpacity>
       </View>
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   viewBox: {
     backgroundColor: 'rgb(245, 242, 244)',
     borderRadius: 10,
-    margin: 20,
+    margin: 10,
     padding: 20,
     alignItems: 'flex-start',
     elevation: 20,

@@ -1,26 +1,32 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import Entypo from '@expo/vector-icons/Entypo';
+import { View, Text, TouchableOpacity, StyleSheet, DrawerLayoutAndroid } from 'react-native';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import React from 'react';
 
 export default function Header() {
   return (
     <View style={styles.headerContainer}>
       <Text style={styles.headerText}>Equal Gender</Text>
-      <TouchableOpacity style={styles.menuButton}>
-        <Entypo name="menu" size={28} color="white" />
+      <TouchableOpacity style={styles.menuButton}>      
+      <MaterialIcons name="more-vert" size={30} color="white" />
       </TouchableOpacity>
     </View>
+  
+    
   );
 }
 
 const styles = StyleSheet.create({
   headerContainer: {
     backgroundColor: 'rgb(96, 6, 138)',
-    padding: 10,
-    height: 100,
+    padding: 20,
+    height: 130,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center', 
+    alignItems: 'center',
+    marginTop: 10,
+    borderTopLeftRadius: 30, 
+    borderTopRightRadius: 30,
+    elevation: 10, // Add shadow for Android  
   },
   headerText: {
     color: 'white',
@@ -30,5 +36,6 @@ const styles = StyleSheet.create({
   },
   menuButton: {
     padding: 10, 
+    
   },
 });

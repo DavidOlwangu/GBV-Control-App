@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity,ScrollView } from 'react-native';
 import Header from '@/components/Header';
 import MakeCall from '@/components/makeCall';
+import SendEmergencyAlert from '@/components/SendEmergencyAlert';
 
 export default function HomeScreen() {
   return (
@@ -57,8 +58,10 @@ export default function HomeScreen() {
           }}>Start the journey.Stand together. Be Aware & Empowered...Let's Kill GBV</Text>
         </View>
       </View>
-      </View>
       <MakeCall/>
+      <SendEmergencyAlert/>
+      </View>
+      
       </ScrollView>
     </SafeAreaView>
   );

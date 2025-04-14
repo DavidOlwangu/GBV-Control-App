@@ -21,7 +21,7 @@ export default function EmergencyContacts(){
     {
       id: 2,
       name: 'Domestic Violence Hotline',
-      phone: '0712345678',
+      phone: '0745846180',
       relationship: 'Support Service',
     },
   ]);
@@ -69,7 +69,7 @@ export default function EmergencyContacts(){
     <View style={styles.contactItem}>
       <View>
         <View style={styles.contactNameContainer}>
-        <AntDesign name="user" size={24} color="grey" />
+        <AntDesign name="user" size={24} color="purple" />
           <Text style={styles.contactName}>{item.name}</Text>
         </View>
         <Text style={styles.contactRelationship}>{item.relationship}</Text>
@@ -80,14 +80,14 @@ export default function EmergencyContacts(){
           style={styles.callButton}
           accessibilityLabel={`Call ${item.name}`}
         >
-          <Ionicons name="call-outline" size={24} color='black' />
+          <Ionicons name="call-outline" size={24} color='white' />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => handleDeleteContact(item.id)}
           style={styles.deleteButton}
           accessibilityLabel={`Delete ${item.name}`}
         >
-          <Ionicons name="trash-sharp" size={24} color="black" />
+          <Ionicons name="trash-sharp" size={24} color="purple" />
         </TouchableOpacity>
       </View>
     </View>
@@ -96,7 +96,7 @@ export default function EmergencyContacts(){
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerText}>My Contacts</Text>
+        <Text style={styles.headerText}>Emergency Contacts</Text>
         <TouchableOpacity
           onPress={() => setIsAdding(!isAdding)}
           style={styles.addButton}
@@ -105,7 +105,7 @@ export default function EmergencyContacts(){
             <Text style={styles.addButtonText}>Cancel</Text>
           ) : (
             <View style={styles.addButtonContent}>
-              <AntDesign name="plus" size={24} color="black" />
+              <AntDesign name="plus" size={24} color="white" />
               <Text style={styles.addButtonText}>Add</Text>
             </View>
           )}
@@ -137,7 +137,7 @@ export default function EmergencyContacts(){
           <View style={styles.saveContainer}>
             <TouchableOpacity onPress={handleAddContact} style={styles.saveButton}>
               <View style={styles.saveButtonContent}>
-                <AntDesign name="save" size={24} color="black" />
+                <AntDesign name="save" size={24} color="white" />
                 <Text style={styles.saveButtonText}>Save Contact</Text>
               </View>
             </TouchableOpacity>
@@ -160,10 +160,12 @@ export default function EmergencyContacts(){
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: 'rgb(245, 242, 244)',
     borderRadius: 8,
     padding: 16,
     marginBottom: 16,
+    elevation:10,
+    shadowColor: '#000',
   },
   header: {
     flexDirection: 'row',
@@ -191,10 +193,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   addContactContainer: {
-    backgroundColor: '#ede9fe',
+    backgroundColor: 'rgb(255, 255, 255)',
     padding: 16,
     borderRadius: 8,
     marginBottom: 16,
+    elevation:10,
   },
   input: {
     borderWidth: 1,
