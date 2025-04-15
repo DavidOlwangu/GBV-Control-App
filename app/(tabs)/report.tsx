@@ -8,16 +8,35 @@ export default function Report() {
             <Header/>
             <ScrollView style={styles.container}>
                 <Text style={styles.title}>Report a Case</Text>
+                <Text style={styles.title}>Personal Information</Text>
+
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter your full name"
+                />
+                <TextInput
+                    style={styles.input}
+                    placeholder="Enter your phone number"
+                />
+
+                <TextInput
+                    style={styles.input}
+                    placeholder="Age"
+                    
+                />
                 <TextInput
                     style={styles.input}
                     placeholder="Enter details of the case"
                     multiline
                     numberOfLines={4}
                 />
+
                 <TextInput
                     style={styles.input}
                     placeholder="Enter location"
                 />
+
+
                 <Button title="Submit" onPress={() => {}} />
              </ScrollView>
         </SafeAreaView>
