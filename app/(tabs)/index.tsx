@@ -8,14 +8,15 @@ export default function HomeScreen() {
         color: 'purple',
         fontSize: 30,
         fontWeight: 'bold',
-      }}>Welcome To EquaGender</Text>
+      }}> Welcome To EquaGender</Text>
       <Text style={{
               color: 'black',
               fontSize: 18,
               fontWeight: 'bold',}}>Where Awareness meets Action</Text>
-      <View>
+            
+      
         <View style={{
-          backgroundColor:'rgb(245, 244, 248)',
+          backgroundColor:'lightblue',
           
           justifyContent:'center',  
           alignItems:'center',
@@ -41,7 +42,7 @@ export default function HomeScreen() {
             fontWeight: 'medium',
             padding: 10,
             marginBottom:10,
-          }}>EquaGender is a confidential platform designed to support individuals affected by gender-based violence. Whether you're reporting an incident, seeking guidance, or accessing resources, We are here to help you feel heard, safe, and supported. Your voice matters—and every report brings us closer to ending GBV and building safer communities for all.</Text>
+          }}>EquaGender is a confidential platform designed to support individuals affected by gender-based violence. Whether you're reporting an incident, seeking guidance, or accessing resources, We are here to help you feel heard, safe, and supported. Your voice matters and every report brings us closer to ending GBV and building safer communities for all.</Text>
 
 <Text style={{
             fontSize: 16,
@@ -51,7 +52,6 @@ export default function HomeScreen() {
             marginBottom:10,
           }}>Start the journey.Stand together. Be Aware & Empowered...Let's Kill GBV</Text>
         </View>
-      </View>
     </SafeAreaView>
   );
 }
