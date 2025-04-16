@@ -5,18 +5,37 @@ import Entypo from '@expo/vector-icons/Entypo';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import AntDesign from '@expo/vector-icons/AntDesign';
+
 import { Foundation } from '@expo/vector-icons';
+
 
 
 export default function TabLayout() { 
   return (
     <Tabs
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         tabBarActiveTintColor: '#1629fa',
-        tabBarInactiveTintColor: '#555',
-        tabBarLabelStyle: { fontSize: 14},
+
+        tabBarInactiveTintColor: 'purple',
+
+        tabBarLabelStyle: { 
+          fontSize: 14,
+          
+          
+
+        },
+        tabBarStyle: {
+          backgroundColor: 'white',
+          borderTopWidth: 0,
+          elevation: 0,
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: 70,
+        },
       }}>
     
     
@@ -24,8 +43,8 @@ export default function TabLayout() {
         name = 'index'
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }: { color: string; size: number }) => (
-            <Entypo name="home" size={size} color={color}/>
+          tabBarIcon: () => (
+            <Entypo name="home" size={24} color='purple'/>
           ),
         }}
       />
@@ -34,8 +53,8 @@ export default function TabLayout() {
           name="report"
           options={{
             title: 'Report Case',
-            tabBarIcon: ({color, size}) => (
-              <Foundation name="clipboard-pencil" size={size} color={color}/>
+            tabBarIcon: () => (
+              <AntDesign name="Safety" size={24} color='purple' />
             ),
           }}
       />
@@ -44,8 +63,9 @@ export default function TabLayout() {
         name="community"
         options={{
           title: 'Community',
-          tabBarIcon: ({color, size}) => (
-            <Entypo name="users" size={size} color={color}/>
+          tabBarIcon: () => (
+            <Entypo name="users" size={24} color='purple'/>
+            
           ),
         }}
       />
@@ -54,8 +74,8 @@ export default function TabLayout() {
         name="emergency"
         options={{
           title: 'Emergency',
-            tabBarIcon: ({ color, size }: { color: string; size: number }) => (
-            <MaterialIcons name="emergency-share" size={size} color={color} />
+            tabBarIcon: () => (
+            <Ionicons name="call-outline" size={24} color='purple' />
           ),
         }}
       />
