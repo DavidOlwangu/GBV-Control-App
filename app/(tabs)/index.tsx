@@ -25,55 +25,93 @@ export default function HomeScreen({} : HomeScreenProps) {
   const cardWidth = isSmallDevice ? width * 0.9 : Math.min(width * 0.8, 600); // 80% of screen width for larger devices
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Text style={{
-        color: 'purple',
-        fontSize: 30,
-        fontWeight: 'bold',
-      }}> Welcome To EquaGender</Text>
-      <Text style={{
-              color: 'black',
-              fontSize: 18,
-              fontWeight: 'bold',}}>Where Awareness meets Action</Text>
-            
-      
-        <View style={{
-          backgroundColor:'lightblue',
+    <SafeAreaView style={styles.safeArea}>
+
+      <Header/>
+
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.container}>
+
+          {/* Main Title */}
+          <Text style={[
+            styles.title,
+             { fontSize: getFontSize(40) }, // Responsive font size
+            ]}>
+             Welcome To EquaGender
+          </Text>
+
+          {/* Subtitle */}
+          <Text style={[
+            styles.subtitle,
+              {fontSize: getFontSize(18)}
+            ]}>
+             Where Awareness meets Action
+          </Text>
+
+          {/* Main Info Card */}
           
-          justifyContent:'center',  
-          alignItems:'center',
-          borderRadius: 5,
-          elevation: 10,
-          width: 480,
-          height: 350,
+          <View style={[
+            styles.mainCard,
+              {
+                width: cardWidth, // Responsive card width
+                padding: isSmallDevice ? 15 : 25, // Responsive padding
+                marginVertical: isSmallDevice ? 15 : 25, // Responsive margin
+              }
+           ]}>
+        
+            {/* Card Title */}
+            <Text style={[
+            styles.cardTitle,
+              { fontSize: getFontSize(20) } // Responsive font size
+            ]}>
+            Empowering Survivors and Protecting Communituies
+            </Text>
 
-        }}>
-          <Text style={{
-            fontSize: 20,
-            color: '#1629fa',
-            fontWeight: 'bold',
-            textAlign:'center',
-            marginBottom:10,
-          }}
+            {/* Main Description */}
+            <Text style={[
+            styles.mainDescription,
+            { fontSize: getFontSize(16) }
+            ]}>
+              EquaGender is a confidential platform designed to support individuals
+             affected by gender-based violence. Whether you're reporting an incident, 
+             seeking guidance, or accessing resources, We are here to help you feel heard, 
+             safe, and supported. Your voice matters—and every report brings us closer to ending 
+             GBV and building safer communities for all.
+            </Text>
 
-          >Empowering Survivors and Protecting Communituies</Text>
-          <Text style={{
-            fontSize: 16,
-            color: '#03012d',
-            textAlign:'center',
-            fontWeight: 'medium',
-            padding: 10,
-            marginBottom:10,
-          }}>EquaGender is a confidential platform designed to support individuals affected by gender-based violence. Whether you're reporting an incident, seeking guidance, or accessing resources, We are here to help you feel heard, safe, and supported. Your voice matters and every report brings us closer to ending GBV and building safer communities for all.</Text>
+            {/* Call to action text */}
+            <Text style={[
+           styles.ctaText,
+             { fontSize: getFontSize(16) }
+            ]}>
+            Start the journey. Stand together. Be Aware & Empowered...Let's Kill GBV
+            </Text>
 
-<Text style={{
-            fontSize: 16,
-            color: '#191970',
-            textAlign:'center',
-            padding: 10,
-            marginBottom:10,
-          }}>Start the journey.Stand together. Be Aware & Empowered...Let's Kill GBV</Text>
+           {/* Action Component Container*/}
+           <View style={[styles.actionsContainer,
+            { flexDirection: isSmallDevice ? 'column' : 'row', 
+              width: cardWidth, 
+            }
+            ]}>
+             
+            {/* Emergency call component */}
+            <View style={[
+              styles.actionWrapper,
+              { width: isSmallDevice ? '100%' : '48%'}
+            ]}>
+              <MakeCall/>
+            </View>
+            {/* Emergency alert component */}
+            <View style={[
+              styles.actionWrapper,
+              { width: isSmallDevice ? '100%' : '48%'}
+             ]}>
+              <SendEmergencyAlert/>
+            </View>
+          </View>
         </View>
+      </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }
