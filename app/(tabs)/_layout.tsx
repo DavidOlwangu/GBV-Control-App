@@ -7,7 +7,7 @@ import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-import { Foundation } from '@expo/vector-icons';
+//import { Foundation } from '@expo/vector-icons';
 
 
 
