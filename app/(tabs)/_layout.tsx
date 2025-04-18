@@ -1,101 +1,107 @@
 import React from 'react';
-import {View, StyleSheet } from 'react-native';
-import Profile from './profile';
-import { Tabs } from 'expo-router';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Tabs, useRouter } from 'expo-router';
 import Entypo from '@expo/vector-icons/Entypo';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
-//import { Foundation } from '@expo/vector-icons';
-
-
-
-export default function TabLayout() { 
+export default function TabLayout() {
+  const router = useRouter();
+  
+  // Function to navigate to profile screen
+  const navigateToProfile = () => {
+    router.push('/profile');
+  };
+  
   return (
-    <Tabs
-      screenOptions={{
-      headerShown: false,
-      tabBarActiveTintColor: '#1629fa',
+    <View style={styles.container}>
 
-      tabBarInactiveTintColor: 'purple',
+      
+      <TouchableOpacity 
+        style={styles.profileButton} 
+        onPress={navigateToProfile}
+      >
+        <AntDesign name="user" size={24} color="purple" />
+      </TouchableOpacity>
+      
+      
+      <Tabs
+        screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: '#1629fa',
+          tabBarInactiveTintColor: 'purple',
+          tabBarLabelStyle: { 
+            fontSize: 14,
+          },
+          tabBarStyle: {
+            backgroundColor: 'white',
+            borderTopWidth: 0,
+            elevation: 0,
+            position: 'absolute',
+            height: 70,
+          },
+        }}>
 
-      tabBarLabelStyle: { 
-        fontSize: 14,
-      },
-      tabBarStyle: {
-        backgroundColor: 'white',
-        borderTopWidth: 0,
-        elevation: 0,
-        position: 'absolute',
-        height: 70,
-      },
-      }}>
+        <Tabs.Screen
+          name="index"
+          options={{
+            title: 'Home',
+            tabBarIcon: () => (
+              <Entypo name="home" size={24} color='purple'/>
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-      name = 'index'
-      options={{
-        title: 'Home',
-        tabBarIcon: () => (
-        <Entypo name="home" size={24} color='purple'/>
-        ),
-      }}
-      />
+        <Tabs.Screen
+          name="report"
+          options={{
+            title: 'Report Case',
+            tabBarIcon: () => (
+              <AntDesign name="Safety" size={24} color='purple' />
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-        name="report"
-        options={{
-        title: 'Report Case',
-        tabBarIcon: () => (
-          <AntDesign name="Safety" size={24} color='purple' />
-        ),
-        }}
-      />
+        <Tabs.Screen
+          name="community"
+          options={{
+            title: 'Community',
+            tabBarIcon: () => (
+              <Entypo name="users" size={24} color='purple'/>
+            ),
+          }}
+        />
 
-      <Tabs.Screen
-      name="community"
-      options={{
-        title: 'Community',
-        tabBarIcon: () => (
-        <Entypo name="users" size={24} color='purple'/>
-        
-        ),
-      }}
-      />
-
-      <Tabs.Screen
-      name="emergency"
-      options={{
-        title: 'Emergency',
-        tabBarIcon: () => (
-        <Ionicons name="call-outline" size={24} color='purple' />
-        ),
-      }}
-      />
-      <Tabs.Screen
-        name='profile'
-        options={{ 
-        title: 'Profile',
-        
-        tabBarIcon:()=> (                                                                                 
-          <AntDesign name="user" size={24} color="purple" />
-      ),
-      }}
-      />
-    </Tabs>
-    
-
+        <Tabs.Screen
+          name="emergency"
+          options={{
+            title: 'Emergency',
+            tabBarIcon: () => (
+              <Ionicons name="call-outline" size={24} color='purple' />
+            ),
+          }}
+        />
+      </Tabs>
+    </View>
   );
 }
 
-
 const styles = StyleSheet.create({
-  profile: {
-     top: 0, // Move the tab bar to the top
-     right: 0, // Align it to the right
-     left: 'auto', // Ensure it doesn't stretch to the left
-
+  container: {
+    flex: 1,
+  },
+  profileButton: {
+    position: 'absolute',
+    top: 50,
+    right: 20,
+    zIndex: 10, // Ensure it appears above other elements
+    backgroundColor: 'white',
+    padding: 10,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
+    elevation: 5,
   }
-
-})
+});
