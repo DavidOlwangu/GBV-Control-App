@@ -1,15 +1,23 @@
 import React from 'react';
-
+import {View, Text} from 'react-native';
 import { Tabs } from 'expo-router';
-import Entypo from '@expo/vector-icons/Entypo';
-import Ionicons from '@expo/vector-icons/Ionicons';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import AntDesign from '@expo/vector-icons/AntDesign';
 
 
 export default function AuthLayout(){
     return(
+      <View style={{
+        flex:1,
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        backgroundColor: 'purple',
+        padding: 10
+      }}>
+        <View>
+           <Text> EquaGender</Text>
+        </View>
+       
+      
        <Tabs
              screenOptions={{
                headerShown: false,
@@ -41,7 +49,7 @@ export default function AuthLayout(){
                options={{
                  title: 'Profile',
                  tabBarIcon: () => (
-                   <Entypo name="home" size={24} color='purple'/>
+                  <AntDesign name="adduser" size={24} color="white" />
                  ),
                }}
              />
@@ -49,5 +57,6 @@ export default function AuthLayout(){
             
        
            </Tabs>
+      </View>
     )   
 }
