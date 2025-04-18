@@ -1,14 +1,4 @@
-import{View, Text} from 'react-native';
-import React from 'react';
-
-export default function Report(){
-  return(
-    <View><Text>Hey</Text></View>
-  )
-}
-
-
-// // import React, { useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -23,52 +13,52 @@ import {
 import { useNavigation } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 
-// interface IncidentDetails {
-//   type: string;
-//   description: string;
-//   location?: string;
-//   date: string;
-// }
+interface IncidentDetails {
+  type: string;
+  description: string;
+  location?: string;
+  date: string;
+}
 
-// interface SurvivorDetails {
-//   name: string;
-//   age: string;
-//   gender: string;
-//   contact: string;
-//   service: string;
-// }
+interface SurvivorDetails {
+  name: string;
+  age: string;
+  gender: string;
+  contact: string;
+  service: string;
+}
 
-// interface PerpetratorDetails {
-//   name: string;
-//   relation: string;
-//   description: string;
-// }
+interface PerpetratorDetails {
+  name: string;
+  relation: string;
+  description: string;
+}
 
 const Report = () => {
   const navigation = useNavigation();
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-//   const [incidentDetails, setIncidentDetails] = useState<IncidentDetails>({
-//     type: '',
-//     description: '',
-//     location: '',
-//     date: '',
-//   });
+  const [incidentDetails, setIncidentDetails] = useState<IncidentDetails>({
+    type: '',
+    description: '',
+    location: '',
+    date: '',
+  });
 
-//   const [survivorDetails, setSurvivorDetails] = useState<SurvivorDetails>({
-//     name: '',
-//     age: '',
-//     gender: '',
-//     contact: '',
-//     service: '',
-//   });
+  const [survivorDetails, setSurvivorDetails] = useState<SurvivorDetails>({
+    name: '',
+    age: '',
+    gender: '',
+    contact: '',
+    service: '',
+  });
 
-//   const [perpetratorDetails, setPerpetratorDetails] = useState<PerpetratorDetails>({
-//     name: '',
-//     relation: '',
-//     description: '',
-//   });
+  const [perpetratorDetails, setPerpetratorDetails] = useState<PerpetratorDetails>({
+    name: '',
+    relation: '',
+    description: '',
+  });
 
   const handleChange = (field: string, value: string) => {
     if (step === 1) {
