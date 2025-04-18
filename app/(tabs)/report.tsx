@@ -6,10 +6,11 @@ import {
   Button,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
   Alert,
-  Platform
+  Platform,
+  
 } from 'react-native';
+import { useNavigation } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
 
 interface IncidentDetails {
@@ -34,6 +35,7 @@ interface PerpetratorDetails {
 }
 
 const Report = () => {
+  const navigation = useNavigation();
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -220,29 +222,34 @@ const Report = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.title}>Report Gender-Based Violence</Text>
-      {isSubmitted ? (
-        <View style={styles.successBox}>
-          <Text style={styles.heading}>Thank you for your submission!</Text>
-          <Text>Your report has been received. We will contact you if needed.</Text>
-          <Button title="Submit Another Report" onPress={resetForm} />
-        </View>
-      ) : (
-        <>
-          {renderStep()}
-          <View style={styles.buttonContainer}>
-            {step > 1 && (
-              <Button title="Back" onPress={() => setStep(step - 1)} />
-            )}
-            {step < 4 ? (
-              <Button title="Next" onPress={() => setStep(step + 1)} />
-            ) : (
-              <Button title="Submit" onPress={handleSubmit} />
-            )}
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.formBox}>
+        <Text style={styles.title}>Report Gender-Based Violence</Text>
+        {isSubmitted ? (
+          <View style={styles.successBox}>
+            <Text style={styles.heading}>Thank you for your submission!</Text>
+            <Text>Your report has been received. We will contact you if needed.</Text>
+            <Button title="Submit Another Report" onPress={resetForm} />
+            <View style={{ marginTop: 10 }}>
+      <Button title="Go Home" onPress={() => navigation.navigate('home')} />
+    </View>
           </View>
-        </>
-      )}
+        ) : (
+          <>
+            {renderStep()}
+            <View style={styles.buttonContainer}>
+              {step > 1 && (
+                <Button title="Back" onPress={() => setStep(step - 1)} />
+              )}
+              {step < 4 ? (
+                <Button title="Next" onPress={() => setStep(step + 1)} />
+              ) : (
+                <Button title="Submit" onPress={handleSubmit} />
+              )}
+            </View>
+          </>
+        )}
+      </View>
     </ScrollView>
   );
 };
@@ -251,14 +258,30 @@ export default Report;
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    paddingHorizontal: 15,
+    paddingVertical: 20,
+  },
+  formBox: {
+    width: '100%',
+    maxWidth: 500,
+    backgroundColor: '#fff',
     padding: 20,
-    backgroundColor: '#fdf5e6',
-    flex: 1,
+    borderRadius: 8,
+    elevation: 2,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 5,
   },
   title: {
     fontSize: 24,
     marginBottom: 15,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   heading: {
     fontSize: 18,
