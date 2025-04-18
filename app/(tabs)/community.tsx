@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, ScrollView } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
 const MultiFormPage = () => {
   const [personalInfo, setPersonalInfo] = useState({ name: '', phone: '' });
@@ -28,7 +28,9 @@ const MultiFormPage = () => {
         onChangeText={(text) => setPersonalInfo({ ...personalInfo, phone: text })}
         style={{ borderWidth: 1, marginBottom: 10, padding: 8 }}
       />
-      <Button title="Submit Personal Info" onPress={handlePersonalSubmit} />
+      <TouchableOpacity onPress={handlePersonalSubmit} >
+        <Text>Submit Personal Info</Text>
+      </TouchableOpacity>
 
       <Text style={{ fontSize: 20, marginVertical: 20 }}>Form 2: Incident Details</Text>
       <TextInput
@@ -44,7 +46,9 @@ const MultiFormPage = () => {
         onChangeText={(text) => setIncidentInfo({ ...incidentInfo, location: text })}
         style={{ borderWidth: 1, marginBottom: 10, padding: 8 }}
       />
-      <Button title="Submit Incident Info" onPress={handleIncidentSubmit} />
+      <TouchableOpacity  onPress={handleIncidentSubmit} >
+        <Text>Submit Incident Info</Text>
+      </TouchableOpacity>
     </ScrollView>
   );
 };
