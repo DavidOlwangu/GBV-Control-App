@@ -7,7 +7,7 @@ export default function Header() {
     <View style={styles.headerContainer}>
       <Text style={styles.headerText}>EquaGender</Text>
       <TouchableOpacity style={styles.menuButton}>      
-      <MaterialIcons name="more-vert" size={30} color="white" />
+      {/* <MaterialIcons name="more-vert" size={30} color="white" /> */}
       </TouchableOpacity>
     </View>
   
