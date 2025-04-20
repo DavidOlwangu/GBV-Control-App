@@ -34,9 +34,8 @@ interface PerpetratorDetails {
   description: string;
 }
 
-const Report = () => {
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
   const navigation = useNavigation();
-  const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [incidentDetails, setIncidentDetails] = useState<IncidentDetails>({
@@ -230,12 +229,9 @@ const Report = () => {
             <Text style={styles.heading}>Thank you for your submission!</Text>
             <Text>Your report has been received. We will contact you if needed.</Text>
             <Button title="Submit Another Report" onPress={resetForm} />
-            <View style={{ marginTop: 10 }}>
-      <Button title="Go Home" onPress={() => navigation.navigate('home')} />
-    </View>
+            <Button title="Go Home" onPress={() => navigation.navigate('Home')} />
+            
           </View>
-        ) : (
-          <>
             {renderStep()}
             <View style={styles.buttonContainer}>
               {step > 1 && (
@@ -246,17 +242,13 @@ const Report = () => {
               ) : (
                 <Button title="Submit" onPress={handleSubmit} />
               )}
-            </View>
-          </>
-        )}
-      </View>
+            </View> 
+      </View> 
+
     </ScrollView>
   );
-};
-
-export default Report;
-
-const styles = StyleSheet.create({
+}
+const styles= StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
