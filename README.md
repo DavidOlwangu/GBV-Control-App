@@ -36,14 +36,14 @@ iOS (planned release)
 
 GBV Control is a mobile application designed to prevent, respond to and track gender-based violence (GBV). It empowers survivors with emergency tools, safe reporting and access to trusted support systems.
 
-1. **Target Audience**
+2. **Target Audience**
 
 - Survivors of gender based violence
 - Counselors and social workers
 - NGOs and emergency responders
 - Law enforcement (with survivor consent)
 
-1. **Key Features**
+3. **Key Features**
 
 **Features Description**
 
@@ -61,7 +61,7 @@ GBV Control is a mobile application designed to prevent, respond to and track ge
 
 **Offline access:** Core emergency features accessible offline; auto-sync when back online
 
-1. **User Roles**
+4. **User Roles**
 
 **Role** **Access level**
 
@@ -73,7 +73,7 @@ GBV Control is a mobile application designed to prevent, respond to and track ge
 
 **Law enforcer** Optional, limited access with survivor consent
 
-1. **User Flow**
+5. **User Flow**
 
 **Home screen**
 
@@ -87,15 +87,15 @@ Quick access to;
 
 Fill out report and submit
 
-1. Live Chat
+6. Live Chat
 
 User is connected with available counselor via encrypted real-time chat system.
 
-1. Settings
+7. Settings
 
 Managed trusted contacts, emergency preferences, language, privacy settings.
 
-1. **Technical Stack**
+8. **Technical Stack**
 
 **Layer** **Technology Used**
 
@@ -107,7 +107,7 @@ Database: PostgreSQL
 
 Authentication: Firebase Auth (email, phone, anonymous support)
 
-1. **API & Integrations**
+9. **API & Integrations**
 
 **Method** **Endpoint** **Purpose**
 
@@ -119,7 +119,7 @@ GET /api/resources retrieve location-based support resources
 
 GET /api/chat/:userId connect user to available counselor
 
-1. **Privacy & Security**
+10. **Privacy & Security**
 
 - End-to-end encrypted live chat
 - Anonymous reporting mode
@@ -128,7 +128,7 @@ GET /api/chat/:userId connect user to available counselor
 - Users can delete all their data anytime
 - Data privacy compliance
 
-1. **Admin Panel (Web Dashboard)**
+11. **Admin Panel (Web Dashboard)**
 
 - Manage and review user reports
 - Update local resources directories
@@ -136,7 +136,7 @@ GET /api/chat/:userId connect user to available counselor
 - Case escalation and response assignment tools
 - Real-time analytics dashboard for usage tracking
 
-1. **Future Roadmap**
+12. **Future Roadmap**
 
 - iOS version launch
 - Multilingual support: Swahili
@@ -145,7 +145,7 @@ GET /api/chat/:userId connect user to available counselor
 - Peer-led support forum (with moderation & counselor oversight)
 - Direct integration with hospitals and police systems
 
-1. **Contact & Support**
+13. **Contact & Support**
 
 Support email
 
