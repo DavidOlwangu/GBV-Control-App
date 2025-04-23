@@ -45,7 +45,7 @@ GBV Control is a mobile application designed to prevent, respond to and track ge
 
 3. **Key Features**
 
-**Features Description**
+**Features    Description**
 
 **Emergency:** Sends real-time location and distress alert to trusted contacts; silent trigger supported
 
@@ -87,11 +87,11 @@ Quick access to;
 
 Fill out report and submit
 
-6. Live Chat
+6. **Live Chat**
 
 User is connected with available counselor via encrypted real-time chat system.
 
-7. Settings
+7. **Settings**
 
 Managed trusted contacts, emergency preferences, language, privacy settings.
 
@@ -109,7 +109,7 @@ Authentication: Firebase Auth (email, phone, anonymous support)
 
 9. **API & Integrations**
 
-**Method** **Endpoint** **Purpose**
+**Method**   **Endpoint**   **Purpose**
 
 POST /api/report submit a GBV report
 
