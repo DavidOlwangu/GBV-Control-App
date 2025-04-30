@@ -72,7 +72,7 @@ export default function HomeScreen({} : HomeScreenProps) {
             styles.mainDescription,
             { fontSize: getFontSize(16) }
             ]}>
-              EquaGender is a confidential platform designed to support individuals
+             EquaGender is a confidential platform designed to support individuals
              affected by gender-based violence. Whether you're reporting an incident, 
              seeking guidance, or accessing resources, We are here to help you feel heard, 
              safe, and supported. Your voice matters—and every report brings us closer to ending 

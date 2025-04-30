@@ -3,20 +3,19 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { Tabs, useRouter } from 'expo-router';
 import Entypo from '@expo/vector-icons/Entypo';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import AntDesign  from '@expo/vector-icons/AntDesign';
 
-export default function TabLayout() {
+export default function TabsLayout() {
   const router = useRouter();
-  
-  // Function to navigate to profile screen
+
+  //Function to navigate to the profile screen
   const navigateToProfile = () => {
     router.push('/profile');
   };
-  
+
   return (
     <View style={styles.container}>
 
-      
       <TouchableOpacity 
         style={styles.profileButton} 
         onPress={navigateToProfile}
