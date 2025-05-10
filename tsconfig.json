@@ -7,7 +7,7 @@
         "./*"
       ]
     },
-    "jsx": "react"
+    "jsx": "react",
   },
   "include": [
     "**/*.ts",

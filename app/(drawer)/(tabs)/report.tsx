@@ -231,7 +231,7 @@ const Report = () => {
             <Text>Your report has been received. We will contact you if needed.</Text>
             <Button title="Submit Another Report" onPress={resetForm} />
             <View style={{ marginTop: 10 }}>
-      <Button title="Go Home" onPress={() => navigation.navigate('home')} />
+      <Button title="Go Home" onPress={() => navigation.navigate('home' as never)} />
     </View>
           </View>
         ) : (
