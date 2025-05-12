@@ -16,7 +16,7 @@ const MultiFormPage = () => {
 
   return (
     <>
-    <Header/>
+    
 
    
       <ScrollView contentContainerStyle={{ padding: 20, backgroundColor: '#fff', height:'100%' }}>

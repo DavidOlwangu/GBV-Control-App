@@ -222,7 +222,7 @@ const App = () => {
 
   return (
     <>
-      <Header />
+      
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.formBox}>
           <Text style={styles.title}>Report Gender-Based Violence</Text>
