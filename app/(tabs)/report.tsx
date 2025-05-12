@@ -8,10 +8,10 @@ import {
   ScrollView,
   Alert,
   Platform,
-  
 } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
+import Header from '@/components/Header';
 
 interface IncidentDetails {
   type: string;
@@ -34,10 +34,10 @@ interface PerpetratorDetails {
   description: string;
 }
 
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+const App = () => {
   const navigation = useNavigation();
   const [isSubmitted, setIsSubmitted] = useState(false);
-
+  const [step, setStep] = useState(1);
   const [incidentDetails, setIncidentDetails] = useState<IncidentDetails>({
     type: '',
     description: '',
@@ -221,34 +221,38 @@ interface PerpetratorDetails {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.formBox}>
-        <Text style={styles.title}>Report Gender-Based Violence</Text>
-        {isSubmitted ? (
-          <View style={styles.successBox}>
-            <Text style={styles.heading}>Thank you for your submission!</Text>
-            <Text>Your report has been received. We will contact you if needed.</Text>
-            <Button title="Submit Another Report" onPress={resetForm} />
-            <Button title="Go Home" onPress={() => navigation.navigate('Home')} />
-            
-          </View>
-            {renderStep()}
-            <View style={styles.buttonContainer}>
-              {step > 1 && (
-                <Button title="Back" onPress={() => setStep(step - 1)} />
-              )}
-              {step < 4 ? (
-                <Button title="Next" onPress={() => setStep(step + 1)} />
-              ) : (
-                <Button title="Submit" onPress={handleSubmit} />
-              )}
-            </View> 
-      </View> 
-
-    </ScrollView>
+    <>
+      <Header />
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.formBox}>
+          <Text style={styles.title}>Report Gender-Based Violence</Text>
+          {isSubmitted ? (
+            <View style={styles.successBox}>
+              <Text style={styles.heading}>Thank you for your submission!</Text>
+              <Text>Your report has been received. We will contact you if needed.</Text>
+              <Button title="Submit Another Report" onPress={resetForm} />
+              <Button title="Go Home" onPress={() => navigation.navigate('Home')} />
+            </View>
+          ) : (
+            <>
+              {renderStep()}
+              <View style={styles.buttonContainer}>
+                {step > 1 && <Button title="Back" onPress={() => setStep(step - 1)} />}
+                {step < 4 ? (
+                  <Button title="Next" onPress={() => setStep(step + 1)} />
+                ) : (
+                  <Button title="Submit" onPress={handleSubmit} />
+                )}
+              </View>
+            </>
+          )}
+        </View>
+      </ScrollView>
+      </>
   );
-}
-const styles= StyleSheet.create({
+};
+
+const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: 'center',
@@ -300,3 +304,5 @@ const styles= StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default App;
