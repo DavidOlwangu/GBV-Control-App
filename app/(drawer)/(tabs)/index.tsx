@@ -27,7 +27,7 @@ export default function HomeScreen({} : HomeScreenProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
 
-      <Header/>
+     
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>

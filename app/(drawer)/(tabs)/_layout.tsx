@@ -28,7 +28,7 @@ export default function TabsLayout() {
         screenOptions={{
           headerShown: false,
           tabBarActiveTintColor: '#1629fa',
-          tabBarInactiveTintColor: 'purple',
+          tabBarInactiveTintColor: 'purple', 
           tabBarLabelStyle: { 
             fontSize: 14,
           },

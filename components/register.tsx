@@ -8,7 +8,6 @@ export default function Register(){
             <Text>Register</Text>
 
             <TouchableOpacity>
-
             </TouchableOpacity>
         </View>
     )
