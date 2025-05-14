@@ -1,41 +1,62 @@
-import { View, Text, TouchableOpacity, StyleSheet, DrawerLayoutAndroid } from 'react-native';
-import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, Platform, StatusBar } from 'react-native';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
-export default function Header() {
-  return (
-    <View style={styles.headerContainer}>
-      <Text style={styles.headerText}>EquaGender</Text>
-      <TouchableOpacity style={styles.menuButton}>      
-      {/* <MaterialIcons name="more-vert" size={30} color="white" /> */}
-      </TouchableOpacity>
-    </View>
-  
-    
-  );
+interface HeaderProps {
+  title?: string;
 }
 
+const Header = ({ title = 'EquaGender' }: HeaderProps) => {
+  const navigation = useNavigation();
+
+  const openDrawer = () => {
+    navigation.dispatch(DrawerActions.openDrawer());
+  };
+
+  return (
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.header}>
+        <View style={styles.titleContainer}>
+          <Text style={styles.title}>{title}</Text>
+        </View>
+        <TouchableOpacity 
+          style={styles.drawerButton} 
+          onPress={openDrawer}
+        >
+          <Ionicons name="menu" size={24} color="white" />
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
+
 const styles = StyleSheet.create({
-  headerContainer: {
-    backgroundColor: 'rgb(96, 6, 138)',
-    padding: 20,
-    height: 100,
+  safeArea: {
+    backgroundColor: 'purple',
+    paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    zIndex: 1000,
+  },
+  header: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    
-    borderTopLeftRadius: 30, 
-    borderTopRightRadius: 30,
-    elevation: 10, // Add shadow for Android  
+    justifyContent: 'space-between',
+    backgroundColor: 'purple',
+    height: 60,
+    paddingHorizontal: 15,
   },
-  headerText: {
+  titleContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  title: {
     color: 'white',
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: 'bold',
-    padding: 10,
   },
-  menuButton: {
-    padding: 10, 
-    
+  drawerButton: {
+    padding: 8,
   },
 });
+
+export default Header;

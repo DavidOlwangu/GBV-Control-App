@@ -16,10 +16,8 @@ const MultiFormPage = () => {
 
   return (
     <>
-    
-
-   
-      <ScrollView contentContainerStyle={{ padding: 20, backgroundColor: '#fff', height:'100%' }}>
+      <Header title="Community" />
+      <ScrollView contentContainerStyle={{ padding: 20, backgroundColor: '#fff', height: '100%' }}>
         <Text style={{ fontSize: 20, marginBottom: 10 }}>Form 1: Personal Info</Text>
         <TextInput
           placeholder="Name"
@@ -33,7 +31,7 @@ const MultiFormPage = () => {
           onChangeText={(text) => setPersonalInfo({ ...personalInfo, phone: text })}
           style={{ borderWidth: 1, marginBottom: 10, padding: 8 }}
         />
-        <TouchableOpacity onPress={handlePersonalSubmit} >
+        <TouchableOpacity onPress={handlePersonalSubmit}>
           <Text>Submit Personal Info</Text>
         </TouchableOpacity>
 
@@ -51,11 +49,11 @@ const MultiFormPage = () => {
           onChangeText={(text) => setIncidentInfo({ ...incidentInfo, location: text })}
           style={{ borderWidth: 1, marginBottom: 10, padding: 8 }}
         />
-        <TouchableOpacity  onPress={handleIncidentSubmit} >
+        <TouchableOpacity onPress={handleIncidentSubmit}>
           <Text>Submit Incident Info</Text>
         </TouchableOpacity>
       </ScrollView>
-      </>
+    </>
   );
 };
 
