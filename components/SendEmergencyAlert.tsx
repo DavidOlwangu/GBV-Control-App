@@ -31,7 +31,7 @@ export default function SendEmergencyAlert() {
             elevation: 20,
             justifyContent: 'center',
             alignItems: 'center',
-            backgroundColor: 'rgb(245, 242, 244)',
+            backgroundColor: 'white',
 
             borderRadius: 10,
         },
