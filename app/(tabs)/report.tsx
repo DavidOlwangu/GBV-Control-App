@@ -8,6 +8,7 @@ import {
   ScrollView,
   Alert,
   Platform,
+  SafeAreaView,
 } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
@@ -34,7 +35,7 @@ interface PerpetratorDetails {
   description: string;
 }
 
-const App = () => {
+const ReportScreen = () => {
   const navigation = useNavigation();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [step, setStep] = useState(1);
@@ -221,7 +222,8 @@ const App = () => {
   };
 
   return (
-    <>
+    <SafeAreaView style={styles.safeArea}>
+      <Header title="Report Case" />
       
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.formBox}>
@@ -231,7 +233,7 @@ const App = () => {
               <Text style={styles.heading}>Thank you for your submission!</Text>
               <Text>Your report has been received. We will contact you if needed.</Text>
               <Button title="Submit Another Report" onPress={resetForm} />
-              <Button title="Go Home" onPress={() => navigation.navigate('Home')} />
+              <Button title="Go Home" onPress={() => navigation.navigate('index')} />
             </View>
           ) : (
             <>
@@ -248,11 +250,15 @@ const App = () => {
           )}
         </View>
       </ScrollView>
-      </>
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
   container: {
     flexGrow: 1,
     justifyContent: 'center',
@@ -305,4 +311,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default ReportScreen;

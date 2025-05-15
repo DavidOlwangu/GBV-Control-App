@@ -7,27 +7,26 @@ import SendEmergencyAlert from '@/components/SendEmergencyAlert';
 interface HomeScreenProps {}
 
 export default function HomeScreen({} : HomeScreenProps) {
-  //Use useWindowDimensions hook for responsiveness
+  // Use useWindowDimensions hook for responsiveness
   // Updates automatically when screen dimension changes
   const { width } = useWindowDimensions();
 
   const isSmallDevice = width < 768; // Determines device size for responsive design
 
-  //Function to calculate responsive font sizes
+  // Function to calculate responsive font sizes
   const getFontSize = (baseSize: number): number => {
-    if (width < 360) return baseSize *0.8; //Very small devices
-    if (width < 768) return baseSize; //Regular phones
-    if (width < 1024) return baseSize * 1.2; //Tablets
+    if (width < 360) return baseSize * 0.8; // Very small devices
+    if (width < 768) return baseSize; // Regular phones
+    if (width < 1024) return baseSize * 1.2; // Tablets
     return baseSize * 1.4; // larger devices
   };
 
-  //Function to calculate responsive card width
+  // Function to calculate responsive card width
   const cardWidth = isSmallDevice ? width * 0.9 : Math.min(width * 0.8, 600); // 80% of screen width for larger devices
 
   return (
     <SafeAreaView style={styles.safeArea}>
-
-     
+      <Header title="EquaGender" />
 
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.container}>
@@ -64,7 +63,7 @@ export default function HomeScreen({} : HomeScreenProps) {
             styles.cardTitle,
               { fontSize: getFontSize(20) } // Responsive font size
             ]}>
-            Empowering Survivors and Protecting Communituies
+            Empowering Survivors and Protecting Communities
             </Text>
 
             {/* Main Description */}
