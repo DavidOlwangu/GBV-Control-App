@@ -39,9 +39,9 @@ export default function TabsLayout() {
           }}
         />
         <Tabs.Screen
-          name="community"
+          name="resources"
           options={{
-            title: 'Community',
+            title: 'Resources',
             tabBarIcon: ({ color }) => <Entypo name="users" size={24} color={color} />,
           }}
         />
