@@ -2,7 +2,7 @@
 
 Check it out and contribute!
 
-It is a mobile app built with **React Native (Expo)** to support and report Gender-Based Violence (GBV) cases in a simple, user-friendly interface.
+It is a mobile app built with **React Native (Expo)** to create awareness, support survivors and report Gender-Based Violence (GBV) cases in a simple, user-friendly interface.
 
 🔗 https://github.com/DavidOlwangu/GBV-Control-App
 
@@ -22,11 +22,11 @@ It is a mobile app built with **React Native (Expo)** to support and report Gend
 
 Version 1.0
 
-Maintained by: GBV Control Dev Team
+Maintained by: EquaGender Team
 
 1. **Overview**
 
-App Name: GBV Control app
+App Name: EquaGender app
 
 Platforms: Android
 
@@ -34,7 +34,7 @@ iOS (planned release)
 
 **Purpose**
 
-GBV Control is a mobile application designed to prevent, respond to and track gender-based violence (GBV). It empowers survivors with emergency tools, safe reporting and access to trusted support systems.
+GBV Control is a mobile application designed to create awareness about GBV,prevent, respond to and track gender-based violence (GBV). It empowers victims with emergency tools incase of suspicious experience, safe reporting for survivors and access to trusted support systems.
 
 2. **Target Audience**
 
@@ -42,6 +42,7 @@ GBV Control is a mobile application designed to prevent, respond to and track ge
 - Counselors and social workers
 - NGOs and emergency responders
 - Law enforcement (with survivor consent)
+- Community at large
 
 3. **Key Features**
 
@@ -50,8 +51,6 @@ GBV Control is a mobile application designed to prevent, respond to and track ge
 **Emergency:** Sends real-time location and distress alert to trusted contacts; silent trigger supported
 
 **Incident reporting:** Anonymous or detailed reporting with optional media attachments (text, image, audio, video)
-
-**Survivor chat:** 24/7 encrypted live chat with trained counselors and support workers
 
 **Resource center:** Legal guides, helplines, local shelters; location-filtered content
 
@@ -83,7 +82,7 @@ Quick access to;
 2. Report Incident
 3. Support Chat
 4. Resources
-5. Incident reporting
+5. Emergency alert
 
 Fill out report and submit
 
