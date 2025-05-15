@@ -4,9 +4,9 @@ import Header from '@/components/Header';
 import Resources from '@/components/resource';
 import SendEmergencyAlert from '@/components/SendEmergencyAlert';
 
-interface HomeScreenProps {}
+interface ResourceScreenProps {}
 
-export default function HomeScreen({} : HomeScreenProps) {
+export default function ResourceScreen({} : ResourceScreenProps) {
   //Use useWindowDimensions hook for responsiveness
   // Updates automatically when screen dimension changes
   const { width } = useWindowDimensions();
@@ -91,9 +91,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
 
-
-  
-  //Main container with centered content
+//Main container with centered content
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -115,35 +113,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
   },
-
-   paragraph: {
-    color: 'blue',
+  paragraph: {
+    color: 'gray',
     fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  //Main card container app description
-  mainCard: {
-    backgroundColor: 'rgb(245, 244, 248)',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 10,
-    elevation: 10,
-    flex: 1,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
+    marginBottom: 20, 
   },
   //Title of the main card
   cardTitle: {
     color: '#1629fa',
     fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 15,
-  },
-  //Main description text inside the card
-  mainDescription: {
-    color: '#03012d',
     textAlign: 'center',
     marginBottom: 15,
   },
