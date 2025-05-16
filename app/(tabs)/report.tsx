@@ -35,7 +35,7 @@ interface PerpetratorDetails {
   description: string;
 }
 
-const ReportScreen = () => {
+export default function ReportScreen(){
   const navigation = useNavigation();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [step, setStep] = useState(1);
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
   formBox: {
     width: '100%',
     maxWidth: 500,
-    backgroundColor: '#fff',
+    backgroundColor: '#D8BFD8',
     padding: 20,
     borderRadius: 8,
     elevation: 2,
@@ -292,7 +292,8 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    fontWeight:'bold',
+    borderColor: 'blue',
     borderRadius: 4,
     padding: Platform.OS === 'ios' ? 12 : 8,
     marginBottom: 15,
@@ -304,11 +305,9 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   successBox: {
-    backgroundColor: '#e6ffe6',
+    backgroundColor: '#fff',
     padding: 20,
     borderRadius: 8,
     alignItems: 'center',
   },
 });
-
-export default ReportScreen;
