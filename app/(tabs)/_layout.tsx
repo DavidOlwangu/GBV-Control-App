@@ -13,8 +13,12 @@ export default function TabsLayout() {
           headerShown: false,
           tabBarActiveTintColor: '#1629fa',
           tabBarInactiveTintColor: 'purple',
+          tabBarLabelPosition: 'below-icon',
           tabBarLabelStyle: {
-            fontSize: 14,
+            fontSize: 12,
+            textAlign: 'center',
+            flexWrap: 'nowrap',
+            includeFontPadding: false,
           },
           tabBarStyle: {
             backgroundColor: 'white',
