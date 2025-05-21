@@ -9,6 +9,7 @@ import {
   Alert,
   Platform,
   SafeAreaView,
+  TouchableOpacity
 } from 'react-native';
 import { useNavigation } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
@@ -232,8 +233,12 @@ export default function ReportScreen(){
             <View style={styles.successBox}>
               <Text style={styles.heading}>Thank you for your submission!</Text>
               <Text>Your report has been received. We will contact you if needed.</Text>
-              <Button title="Submit Another Report" onPress={resetForm} />
-              <Button title="Go Home" onPress={() => navigation.navigate('index')} />
+              <TouchableOpacity style={styles.purpleButton} onPress={resetForm}>
+      <Text style={styles.buttonText}>Submit Another Report</Text>
+    </TouchableOpacity>
+              <TouchableOpacity style={styles.purpleButton} onPress={() => navigation.navigate('index')}>
+      <Text style={styles.buttonText}>Go Home</Text>
+    </TouchableOpacity>
             </View>
           ) : (
             <>
@@ -309,5 +314,19 @@ const styles = StyleSheet.create({
     padding: 20,
     borderRadius: 8,
     alignItems: 'center',
+  },
+  purpleButton: {
+    backgroundColor: 'purple',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 6,
+    marginTop: 10,
+    width: '100%',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });

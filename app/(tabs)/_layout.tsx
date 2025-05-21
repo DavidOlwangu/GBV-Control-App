@@ -46,7 +46,7 @@ export default function TabsLayout() {
           name="resources"
           options={{
             title: 'Resources',
-            tabBarIcon: ({ color }) => <Entypo name="users" size={24} color={color} />,
+            tabBarIcon: ({ color }) => <Entypo name="book" size={24} color={color} />,
           }}
         />
         <Tabs.Screen
