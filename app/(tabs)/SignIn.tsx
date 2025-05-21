@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Alert, StyleSheet, View, AppState } from 'react-native'
-import { supabase } from '../lib/supabase'
+import { supabase } from '@/lib/supabase'
 import { Button, Input } from '@rneui/themed'
 
 // Tells Supabase Auth to continuously refresh the session automatically if
@@ -31,20 +31,6 @@ export default function Auth() {
     setLoading(false)
   }
 
-  async function signUpWithEmail() {
-    setLoading(true)
-    const {
-      data: { session },
-      error,
-    } = await supabase.auth.signUp({
-      email: email,
-      password: password,
-    })
-
-    if (error) Alert.alert(error.message)
-    if (!session) Alert.alert('Please check your inbox for email verification!')
-    setLoading(false)
-  }
 
   return (
     <View style={styles.container}>
@@ -71,9 +57,6 @@ export default function Auth() {
       </View>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <Button title="Sign in" disabled={loading} onPress={() => signInWithEmail()} />
-      </View>
-      <View style={styles.verticallySpaced}>
-        <Button title="Sign up" disabled={loading} onPress={() => signUpWithEmail()} />
       </View>
     </View>
   )

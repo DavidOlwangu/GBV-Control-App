@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
 import { Tabs } from 'expo-router';
 import Entypo from '@expo/vector-icons/Entypo';
 import Ionicons from '@expo/vector-icons/Ionicons';
@@ -57,7 +57,7 @@ export default function TabsLayout() {
           }}
         />
         <Tabs.Screen
-          name="auth"
+          name="signup"
           options={{
             title: 'Profile',
             tabBarIcon: ({ color }) => <AntDesign name="user" size={24} color={color} />,
