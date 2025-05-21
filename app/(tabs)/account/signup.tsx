@@ -8,16 +8,19 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Dimensions,
   KeyboardAvoidingView,
   Platform,
+  useWindowDimensions,
 } from 'react-native';
 import { Stack, useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
+import { EntryExitTransition } from 'react-native-reanimated';
 
-const { width } = Dimensions.get('window');
 
 export default function Profile() {
+  const { width } = useWindowDimensions();
   const router = useRouter();
+
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     firstname: '',
@@ -27,6 +30,8 @@ export default function Profile() {
     confirmPassword: '',
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const validate = () => {
     const newErrors: { [key: string]: string } = {};
@@ -54,7 +59,7 @@ export default function Profile() {
       router.replace('/account');
     }, 1500);
   };
-
+  const containerWidth = Math.min(width * 0.9, 400);
   return (
     <SafeAreaView style={styles.wrapper}>
       <Stack.Screen
@@ -73,7 +78,7 @@ export default function Profile() {
           contentContainerStyle={styles.scroll}
           keyboardShouldPersistTaps="handled"
         >
-          <View style={styles.container}>
+          <View style={[styles.container, { width: containerWidth}]}>
             <Text style={styles.title}>Create Account</Text>
 
             <TextInput
@@ -94,30 +99,53 @@ export default function Profile() {
 
             <TextInput
               style={styles.input}
-              placeholder="Email (@gmail.com)"
+              placeholder="Email (abc@gmail.com)"
               autoCapitalize="none"
               keyboardType="email-address"
               value={form.email}
               onChangeText={(text) => setForm({ ...form, email: text })}
             />
             {errors.email && <Text style={styles.error}>{errors.email}</Text>}
-
+            <View style={styles.passwordWrapper}>
             <TextInput
-              style={styles.input}
+              style={styles.passwordInput}
               placeholder="Password"
-              secureTextEntry
+              secureTextEntry={!showPassword}
               value={form.password}
               onChangeText={(text) => setForm({ ...form, password: text })}
             />
+            <TouchableOpacity
+              onPress={() => setShowPassword((prev) => !prev)}
+              style={styles.eyeIcon}
+            >
+              <Ionicons
+                name={showPassword ? 'eye' : 'eye-off'}
+                size={24}
+                color="purple"
+              />
+            </TouchableOpacity>
+            </View>
             {errors.password && <Text style={styles.error}>{errors.password}</Text>}
-
+           
+            <View style={styles.passwordWrapper}>
             <TextInput
-              style={styles.input}
+              style={styles.passwordInput}
               placeholder="Confirm Password"
-              secureTextEntry
+              secureTextEntry={!showConfirmPassword}
               value={form.confirmPassword}
               onChangeText={(text) => setForm({ ...form, confirmPassword: text })}
             />
+            <TouchableOpacity
+              onPress={() => setShowConfirmPassword((prev) => !prev)}
+              style={styles.eyeIcon}
+            >
+              <Ionicons
+                name={showConfirmPassword ? 'eye' : 'eye-off'}
+                size={24}
+                color="purple"
+              />
+            </TouchableOpacity>
+            </View>
             {errors.confirmPassword && (
               <Text style={styles.error}>{errors.confirmPassword}</Text>
             )}
@@ -155,16 +183,13 @@ const styles = StyleSheet.create({
     paddingVertical: 40,
   },
   container: {
-    width: width * 0.9,
-    maxWidth: 400,
-    alignItems: 'stretch',
-    backgroundColor: '#D8BFD8',
+    backgroundColor: '#fff',
     padding: 20,
     borderRadius: 12,
     elevation: 2,
   },
   title: {
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
@@ -172,18 +197,38 @@ const styles = StyleSheet.create({
   input: {
     borderWidth: 1,
     borderColor: '#ccc',
-    marginBottom: 16,
+    marginBottom: 10,
     padding: 12,
     borderRadius: 8,
+    width: '100%',
+  },
+  passwordWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    marginBottom: 10,
+    paddingRight: 12,
+    width: '100%',
+  },
+  passwordInput: {
+    flex: 1,
+    padding: 12,
+  },
+  eyeIcon: {
+    position: 'absolute',
+    right: 10,
+    top: 12,
   },
   error: {
     color: 'red',
-    marginBottom: 12,
+    marginBottom: 8,
   },
   button: {
-    backgroundColor: 'blue',
+    backgroundColor: 'purple',
     padding: 14,
-    borderRadius: 10,
+    borderRadius: 8,
     alignItems: 'center',
     marginTop: 10,
   },
@@ -197,7 +242,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   link: {
-    color: '#6a1b9a',
+    color: 'purple',
     fontWeight: '500',
   },
 });
