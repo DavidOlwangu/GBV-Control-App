@@ -57,7 +57,7 @@ export default function TabsLayout() {
           }}
         />
         <Tabs.Screen
-          name="account"
+          name="auth"
           options={{
             title: 'Profile',
             tabBarIcon: ({ color }) => <AntDesign name="user" size={24} color={color} />,

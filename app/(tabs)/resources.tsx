@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ScrollView, useWindowDimensions } from 'react-native';
 import Header from '@/components/Header';
 import Resources from '@/components/resource';
-import SendEmergencyAlert from '@/components/SendEmergencyAlert';
+import Mombasa from '@/components/msa_resource';
 
 interface ResourceScreenProps {}
 
@@ -72,7 +72,7 @@ export default function ResourceScreen({} : ResourceScreenProps) {
               width: cardWidth, 
             }
             ]}>
-              <Resources/>
+              <Mombasa/>
               </View>
       </View>
       </ScrollView>
