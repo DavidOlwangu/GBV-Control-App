@@ -42,7 +42,7 @@ export default function TabsLayout() {
           name="resources"
           options={{
             title: 'Resources',
-            tabBarIcon: ({ color }) => <Entypo name="users" size={24} color={color} />,
+            tabBarIcon: ({ color }) => <Entypo name="book" size={24} color={color} />,
           }}
         />
         <Tabs.Screen
@@ -53,7 +53,7 @@ export default function TabsLayout() {
           }}
         />
         <Tabs.Screen
-          name="account"
+          name="auth"
           options={{
             title: 'Profile',
             tabBarIcon: ({ color }) => <AntDesign name="user" size={24} color={color} />,

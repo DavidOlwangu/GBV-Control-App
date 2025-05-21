@@ -133,7 +133,7 @@ export default function Profile() {
             <Text style={styles.text}>
               Already have an account?
               <Text style={styles.link} onPress={() => router.push('/account')}>
-                {' '}Sign In
+                {' '}
               </Text>
             </Text>
           </View>
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     maxWidth: 400,
     alignItems: 'stretch',
-    backgroundColor: '#fff',
+    backgroundColor: '#D8BFD8',
     padding: 20,
     borderRadius: 12,
     elevation: 2,
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     marginBottom: 12,
   },
   button: {
-    backgroundColor: '#6a1b9a',
+    backgroundColor: 'blue',
     padding: 14,
     borderRadius: 10,
     alignItems: 'center',

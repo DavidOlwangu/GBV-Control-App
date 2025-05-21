@@ -8,6 +8,7 @@ import Header from '@/components/Header';
 export default function Emergency(){
     return(
         <SafeAreaView style={styles.container}>
+            <Header/>
             
           <ScrollView> 
             

@@ -14,7 +14,7 @@ export default function MakeCall() {
         <Text style={styles.viewTitle}>Call for Help</Text>
         <TouchableOpacity style={styles.callButton} onPress={handleEmergencyCall}>
            <Ionicons name="call-outline" size={24} color='white' />
-          <Text style={styles.callButtonText}>Emergency Call</Text>
+          <Text style={styles.callButtonText}>Call</Text>
         </TouchableOpacity>
       </View>
       

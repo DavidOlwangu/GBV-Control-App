@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
         width: width * 0.9,
         maxWidth: 400,
         alignItems: 'stretch',
-        backgroundColor: '#fff',
+        backgroundColor: '#D8BFD8',
         padding: 20,
         borderRadius: 12,
         elevation: 2,
