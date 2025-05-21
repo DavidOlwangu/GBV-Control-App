@@ -223,11 +223,11 @@ export default function ReportScreen(){
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <Header title="Report Case" />
+      <Header/>
       
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.formBox}>
-          <Text style={styles.title}>Report Gender-Based Violence</Text>
+          <Text style={styles.title}>Report GBV Case</Text>
           {isSubmitted ? (
             <View style={styles.successBox}>
               <Text style={styles.heading}>Thank you for your submission!</Text>

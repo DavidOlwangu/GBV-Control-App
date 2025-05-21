@@ -161,7 +161,7 @@ export default function Profile() {
             <Text style={styles.text}>
               Already have an account?
               <Text style={styles.link} onPress={() => router.push('/account')}>
-                {' '}Sign In
+                {' '}
               </Text>
             </Text>
           </View>
