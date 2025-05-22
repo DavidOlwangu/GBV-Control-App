@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Alert, TouchableOpacity, TextInput, Text, StyleSheet, View } from 'react-native'
 import { supabase } from '@/lib/supabase'
-import SignIn from '@/components/SignIn'
 
 export default function Auth() {
   const [name, setName] = useState('')
@@ -64,8 +63,8 @@ export default function Auth() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Welcome</Text>
-      <Text style={styles.subtitle}>Sign in or create an account</Text>
+      <Text style={styles.title}>Hi, Glad to Start this Journey...</Text>
+      <Text style={styles.subtitle}>Create Account to Explore our Services</Text>
       <View style={[styles.verticallySpaced, styles.mt20]}>
         <TextInput
           style={styles.input}

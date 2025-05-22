@@ -11,13 +11,14 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { useNavigation } from 'expo-router';
+import {supabase} from '@/lib/supabase';
 import { Picker } from '@react-native-picker/picker';
 import Header from '@/components/Header';
 
 interface IncidentDetails {
   type: string;
   description: string;
-  location?: string;
+  location: string;
   date: string;
 }
 
@@ -41,7 +42,7 @@ export default function ReportScreen(){
   const [step, setStep] = useState(1);
   const [incidentDetails, setIncidentDetails] = useState<IncidentDetails>({
     type: '',
-    description: '',
+    description:'',
     location: '',
     date: '',
   });
@@ -70,14 +71,58 @@ export default function ReportScreen(){
     }
   };
 
-  const handleSubmit = () => {
-    console.log('Incident:', incidentDetails);
-    console.log('Survivor:', survivorDetails);
-    console.log('Perpetrator:', perpetratorDetails);
-    setIsSubmitted(true);
-    Alert.alert('Report Submitted', 'Thank you for your submission.');
-  };
+  const handleSubmit = async () => {
+    try {
+      // Insert incident details
+      const { data: incidentData, error: incidentError } = await supabase
+        .from('incidents')
+        .insert([
+          {
+            type: incidentDetails.type,
+            description: incidentDetails.description,
+            location: incidentDetails.location,
+            date: incidentDetails.date,
+          },
+        ])
+        .single();
 
+      if (incidentError) throw new Error(incidentError.message);
+
+ const { data: survivorData, error: survivorError } = await supabase
+        .from('survivors')
+        .insert([
+          {
+            incident_id: incidentData.id,
+            name: survivorDetails.name,
+            age: survivorDetails.age,
+            gender: survivorDetails.gender,
+            contact: survivorDetails.contact,
+            service: survivorDetails.service,
+          },
+        ])
+        .single();
+
+      if (survivorError) throw new Error(survivorError.message);
+
+  const { error: perpetratorError } = await supabase
+        .from('perpetrators')
+        .insert([
+          {
+            incident_id: incidentData.id,
+            name: perpetratorDetails.name,
+            relation: perpetratorDetails.relation,
+            description: perpetratorDetails.description,
+          },
+        ]);
+
+      if (perpetratorError) throw new Error(perpetratorError.message);
+      
+      setIsSubmitted(true);
+      Alert.alert('Report Submitted', 'Thank you for your submission.');
+    } catch (error) {
+      Alert.alert('Submission Error', error.message);
+    }
+  };    
   const resetForm = () => {
     setIncidentDetails({ type: '', description: '', location: '', date: '' });
     setSurvivorDetails({ name: '', age: '', gender: '', contact: '', service: '' });
@@ -233,7 +278,7 @@ export default function ReportScreen(){
               <Text style={styles.heading}>Thank you for your submission!</Text>
               <Text>Your report has been received. We will contact you if needed.</Text>
               <Button title="Submit Another Report" onPress={resetForm} />
-              <Button title="Go Home" onPress={() => navigation.navigate('index')} />
+              <Button title="Go Home" onPress={() => navigation.navigate('/index')} />
             </View>
           ) : (
             <>
