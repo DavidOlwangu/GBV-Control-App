@@ -85,43 +85,47 @@ export default function ReportScreen(){
             date: incidentDetails.date,
           },
         ])
-        .single();
+        .select()
+        .single() as { data: { id: number } | null, error: any };
 
       if (incidentError) throw new Error(incidentError.message);
 
- const { data: survivorData, error: survivorError } = await supabase
-        .from('survivors')
-        .insert([
-          {
-            incident_id: incidentData.id,
-            name: survivorDetails.name,
-            age: survivorDetails.age,
-            gender: survivorDetails.gender,
-            contact: survivorDetails.contact,
-            service: survivorDetails.service,
-          },
-        ])
-        .single();
+if (!incidentData) throw new Error('Incident creation failed.');
 
-      if (survivorError) throw new Error(survivorError.message);
+const { data: survivorData, error: survivorError } = await supabase
+  .from('survivors')
+  .insert([
+    {
+      incident_id: incidentData.id,
+      name: survivorDetails.name,
+      age: survivorDetails.age,
+      gender: survivorDetails.gender,
+      contact: survivorDetails.contact,
+      service: survivorDetails.service,
+    },
+  ])
+  .single();
 
-  const { error: perpetratorError } = await supabase
-        .from('perpetrators')
-        .insert([
-          {
-            incident_id: incidentData.id,
-            name: perpetratorDetails.name,
-            relation: perpetratorDetails.relation,
-            description: perpetratorDetails.description,
-          },
-        ]);
+if (survivorError) throw new Error(survivorError.message);
+
+const { error: perpetratorError } = await supabase
+  .from('perpetrators')
+  .insert([
+    {
+      incident_id: incidentData.id,
+      name: perpetratorDetails.name,
+      relation: perpetratorDetails.relation,
+      description: perpetratorDetails.description,
+    },
+  ]);
 
       if (perpetratorError) throw new Error(perpetratorError.message);
       
       setIsSubmitted(true);
       Alert.alert('Report Submitted', 'Thank you for your submission.');
     } catch (error) {
-      Alert.alert('Submission Error', error.message);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      Alert.alert('Submission Error', errorMessage);
     }
   };    
   const resetForm = () => {
