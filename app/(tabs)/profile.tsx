@@ -119,7 +119,7 @@ export default function Auth() {
         </TouchableOpacity>
         <Text >
         Already have an account?{' '}
-        <Text  onPress={() => router.push('/login')}>
+        <Text style={styles.link}  onPress={() => router.push('/login')}>
           Login
         </Text>
       </Text>
@@ -176,6 +176,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 4,
     elevation: 3,
+  },
+   link: {
+    color: 'purple',
+    fontStyle: 'italic',
+    textDecorationLine: 'underline',
   },
   buttonText: {
     color: '#fff',

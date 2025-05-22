@@ -12,16 +12,11 @@ import {
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { supabase } from '../lib/supabase';
-
-interface Contact {
-  id: string;
-  name: string;
-  phone: string;
-  relationship: string;
-  isDefault?: boolean;
-}
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function EmergencyContacts() {
+  const { user, loading: authLoading } = useAuth();
+
   // Default contacts that are always available
   const defaultContacts: Contact[] = [
     {
@@ -49,26 +44,12 @@ export default function EmergencyContacts() {
   const [isAdding, setIsAdding] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
-    getCurrentUser();
-  }, []);
 
   useEffect(() => {
     if (user) {
       fetchContacts();
     }
   }, [user]);
-
-  const getCurrentUser = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-    } catch (error) {
-      console.error('Error getting user:', error);
-    }
-  };
 
   const fetchContacts = async () => {
     if (!user) return;
@@ -294,9 +275,31 @@ export default function EmergencyContacts() {
 
       {!user && (
         <View style={styles.loginPrompt}>
-          <Text style={styles.loginPromptText}>
-            Sign in to add your own emergency contacts
-          </Text>
+            <Text style={styles.loginPromptText}>
+            <Text>
+              {/* "Sign in" as a link */}
+              <Text
+              style={{ color: '#6b46c1', textDecorationLine: 'underline' }}
+              onPress={() => {
+                // Navigate to Profile tab
+                // Assumes you have navigation prop via useNavigation or similar
+                // If not, replace with your navigation logic
+                // Example for React Navigation:
+                // navigation.navigate('Profile');
+                // If using a tab navigator, you may need navigation.navigate('ProfileTab')
+                // For this example, we'll use a global navigation ref if available
+                // Replace as needed for your app
+                // @ts-ignore
+                if (typeof navigation !== 'undefined') {
+                navigation.navigate('/(tabs)/profile');
+                }
+              }}
+              >
+              Sign in
+              </Text>
+              {' '}to add your own emergency contacts
+            </Text>
+            </Text>
         </View>
       )}
 
