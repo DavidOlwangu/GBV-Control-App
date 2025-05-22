@@ -26,6 +26,7 @@ export default function Signup({ onLoginPress }: { onLoginPress?: () => void }) 
       }
     } else {
       Alert.alert('Check your email for verification!')
+      router.push('/profile')
     }
     setLoading(false)
   }
@@ -61,7 +62,7 @@ export default function Signup({ onLoginPress }: { onLoginPress?: () => void }) 
       </TouchableOpacity>
       <Text style={styles.footer}>
         Don't have an acount?{' '}
-       <Text style={styles.link} onPress={() => router.push('/(tabs)/profile')}>
+       <Text style={styles.link} onPress={() => router.push('/../components/profile')}>
           Signup
       </Text>
       </Text>

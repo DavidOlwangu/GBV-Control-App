@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'expo-router'
+import LoginPage from '@/components/login'
 
-export default function Signup() {
+
+export default function Signup({ onLoginPress }: { onLoginPress?: () => void }) {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -25,7 +27,6 @@ export default function Signup() {
       }
     } else {
       Alert.alert('Check your email for verification!')
-      router.push('/login')
     }
     setLoading(false)
   }
@@ -53,7 +54,7 @@ export default function Signup() {
       />
       <TextInput
         style={styles.input}
-        placeholder="Confirm your password"
+        placeholder="Confirm your pasword"
         placeholderTextColor="#888"
         secureTextEntry
         autoCapitalize="none"
@@ -68,10 +69,10 @@ export default function Signup() {
         <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       <Text style={styles.footer}>
-        Already have an account?{' '}
-        <Text style={styles.link} onPress={() => router.push('/login')}>
+        Already have an acount?{' '}
+       <Text style={styles.link} onPress={() => router.push('/login')}>
           Login
-        </Text>
+      </Text>
       </Text>
     </View>
   )
@@ -132,5 +133,6 @@ const styles = StyleSheet.create({
     color: 'purple',
     fontStyle: 'italic',
     textDecorationLine: 'underline',
+    
   },
 })

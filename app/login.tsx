@@ -3,36 +3,27 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'reac
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'expo-router'
 
-export default function Signup() {
+export default function Login() {
   const router = useRouter()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
-  async function handleSignup() {
-    if (password !== confirmPassword) {
-      Alert.alert('Passwords do not match')
-      return
-    }
+  async function handleLogin() {
     setLoading(true)
-    const { error } = await supabase.auth.signUp({ email, password })
+    const { error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
-      if (error.message.toLowerCase().includes('already registered')) {
-        Alert.alert('Account already exists, Login.')
-      } else {
-        Alert.alert(error.message)
-      }
+      Alert.alert(error.message)
     } else {
-      Alert.alert('Check your email for verification!')
-      router.push('/login')
+      Alert.alert('Login successful!')
+      router.push('/profile')
     }
     setLoading(false)
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign Up</Text>
+      <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter your email"
@@ -44,33 +35,24 @@ export default function Signup() {
       />
       <TextInput
         style={styles.input}
-        placeholder="Create a password"
+        placeholder="Enter password"
         placeholderTextColor="#888"
         secureTextEntry
         autoCapitalize="none"
         value={password}
         onChangeText={setPassword}
       />
-      <TextInput
-        style={styles.input}
-        placeholder="Confirm your password"
-        placeholderTextColor="#888"
-        secureTextEntry
-        autoCapitalize="none"
-        value={confirmPassword}
-        onChangeText={setConfirmPassword}
-      />
       <TouchableOpacity
         style={[styles.button, loading && styles.buttonDisabled]}
-        onPress={handleSignup}
+        onPress={handleLogin}
         disabled={loading}
       >
-        <Text style={styles.buttonText}>Sign Up</Text>
+        <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
       <Text style={styles.footer}>
-        Already have an account?{' '}
-        <Text style={styles.link} onPress={() => router.push('/login')}>
-          Login
+        Don't have an account?{' '}
+        <Text style={styles.link} onPress={() => router.push('/profile')}>
+          Signup
         </Text>
       </Text>
     </View>
@@ -80,9 +62,9 @@ export default function Signup() {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    height:'100%',
+    height: '100%',
     margin: 1,
-    marginTop:0,
+    marginTop: 0,
     borderRadius: 12,
     padding: 24,
     alignItems: 'stretch',
