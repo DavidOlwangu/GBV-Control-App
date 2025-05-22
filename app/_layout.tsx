@@ -7,6 +7,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { StyleSheet } from 'react-native';
+import { AuthProvider } from '@/contexts/AuthContext';
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -29,15 +30,17 @@ export default function RootLayout() {
   }
 
   return (
-    <GestureHandlerRootView style={styles.container}>
-      <ThemeProvider value={colorScheme === 'light' ? DefaultTheme : DarkTheme}>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="(tabs)" />
-          <Stack.Screen name="+not-found" options={{ headerShown: true }} />
-        </Stack>
-        <StatusBar style="auto" />
-      </ThemeProvider>
-    </GestureHandlerRootView>
+    <AuthProvider>
+      <GestureHandlerRootView style={styles.container}>
+        <ThemeProvider value={colorScheme === 'light' ? DefaultTheme : DarkTheme}>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" />
+            <Stack.Screen name="+not-found" options={{ headerShown: true }} />
+          </Stack>
+          <StatusBar style="auto" />
+        </ThemeProvider>
+      </GestureHandlerRootView>
+    </AuthProvider>
   );
 }
 

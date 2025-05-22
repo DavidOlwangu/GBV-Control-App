@@ -8,10 +8,12 @@ import {
   StyleSheet,
   Linking,
   Alert,
+  ActivityIndicator,
 } from 'react-native';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { supabase } from '../lib/supabase';
+import { useAuth } from '@/contexts/AuthContext';
 
 interface Contact {
   id: string;
@@ -22,7 +24,7 @@ interface Contact {
 }
 
 export default function EmergencyContacts() {
-  // Default contacts that are always available
+  const { user } = useAuth();
   const defaultContacts: Contact[] = [
     {
       id: 'default-1',
@@ -41,72 +43,40 @@ export default function EmergencyContacts() {
   ];
 
   const [contacts, setContacts] = useState<Contact[]>(defaultContacts);
-  const [newContact, setNewContact] = useState({
-    name: '',
-    phone: '',
-    relationship: '',
-  });
+  const [newContact, setNewContact] = useState({ name: '', phone: '', relationship: '' });
   const [isAdding, setIsAdding] = useState(false);
   const [saveMessage, setSaveMessage] = useState('');
   const [loading, setLoading] = useState(false);
-  const [user, setUser] = useState<any>(null);
+  const [fetching, setFetching] = useState(false);
 
+  // Fetch all contacts (optionally, you can fetch only user contacts if logged in)
   useEffect(() => {
-    getCurrentUser();
+    fetchContacts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (user) {
-      fetchContacts();
-    }
-  }, [user]);
-
-  const getCurrentUser = async () => {
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      setUser(user);
-    } catch (error) {
-      console.error('Error getting user:', error);
-    }
-  };
-
   const fetchContacts = async () => {
-    if (!user) return;
+    setFetching(true);
+    const { data, error } = await supabase
+      .from('emergency_contacts')
+      .select('*')
+      .order('created_at', { ascending: true });
 
-    try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from('emergency_contacts')
-        .select('*')
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: true });
-
-      if (error) {
-        console.error('Error fetching contacts:', error);
-        Alert.alert('Error', 'Failed to load contacts');
-        return;
-      }
-
-      // Combine default contacts with user's contacts
-      const userContacts = data || [];
-      const allContacts = [
-        ...defaultContacts,
-        ...userContacts.map(contact => ({
-          id: contact.id,
-          name: contact.name,
-          phone: contact.phone,
-          relationship: contact.relationship || '',
-          isDefault: false,
-        }))
-      ];
-      
-      setContacts(allContacts);
-    } catch (error) {
+    if (error) {
       console.error('Error fetching contacts:', error);
       Alert.alert('Error', 'Failed to load contacts');
-    } finally {
-      setLoading(false);
+      setContacts(defaultContacts);
+    } else {
+      const userContacts = data?.map((contact: any) => ({
+        id: contact.id,
+        name: contact.name,
+        phone: contact.phone,
+        relationship: contact.relationship || '',
+        isDefault: false,
+      })) || [];
+      setContacts([...defaultContacts, ...userContacts]);
     }
+    setFetching(false);
   };
 
   const handleAddContact = async () => {
@@ -115,121 +85,68 @@ export default function EmergencyContacts() {
       return;
     }
 
-    if (!user) {
-      Alert.alert('Error', 'You must be logged in to add contacts');
+    setLoading(true);
+    const insertObj: any = {
+      name: newContact.name.trim(),
+      phone: newContact.phone.trim(),
+      relationship: newContact.relationship.trim(),
+    };
+    if (user) insertObj.user_id = user.id;
+
+    const { data, error } = await supabase
+      .from('emergency_contacts')
+      .insert([insertObj])
+      .select()
+      .single();
+
+    if (error) {
+      console.error('Error adding contact:', error);
+      Alert.alert('Error', 'Failed to save contact');
+      setLoading(false);
       return;
     }
 
-    try {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from('emergency_contacts')
-        .insert([
-          {
-            user_id: user.id,
-            name: newContact.name.trim(),
-            phone: newContact.phone.trim(),
-            relationship: newContact.relationship.trim(),
-          },
-        ])
-        .select()
-        .single();
+    const newContactWithId: Contact = {
+      id: data.id,
+      name: data.name,
+      phone: data.phone,
+      relationship: data.relationship || '',
+      isDefault: false,
+    };
 
-      if (error) {
-        console.error('Error adding contact:', error);
-        Alert.alert('Error', 'Failed to save contact');
-        return;
-      }
-
-      // Add the new contact to the local state
-      const newContactWithId: Contact = {
-        id: data.id,
-        name: data.name,
-        phone: data.phone,
-        relationship: data.relationship || '',
-        isDefault: false,
-      };
-
-      setContacts([...contacts, newContactWithId]);
-      setNewContact({
-        name: '',
-        phone: '',
-        relationship: '',
-      });
-      setIsAdding(false);
-      setSaveMessage('Contact saved successfully');
-      setTimeout(() => setSaveMessage(''), 3000);
-    } catch (error) {
-      console.error('Error adding contact:', error);
-      Alert.alert('Error', 'Failed to save contact');
-    } finally {
-      setLoading(false);
-    }
+    setContacts([...contacts, newContactWithId]);
+    setNewContact({ name: '', phone: '', relationship: '' });
+    setIsAdding(false);
+    setSaveMessage('Contact saved successfully');
+    setTimeout(() => setSaveMessage(''), 3000);
+    setLoading(false);
   };
 
   const handleDeleteContact = async (id: string, isDefault: boolean = false) => {
-    // Prevent deletion of default contacts
     if (isDefault) {
       Alert.alert('Info', 'Default emergency contacts cannot be deleted');
       return;
     }
 
-    if (!user) {
-      Alert.alert('Error', 'You must be logged in to delete contacts');
+    setLoading(true);
+    const { error } = await supabase
+      .from('emergency_contacts')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      console.error('Error deleting contact:', error);
+      Alert.alert('Error', 'Failed to delete contact');
+      setLoading(false);
       return;
     }
 
-    Alert.alert(
-      'Confirm Delete',
-      'Are you sure you want to delete this contact?',
-      [
-        {
-          text: 'Cancel',
-          style: 'cancel',
-        },
-        {
-          text: 'Delete',
-          style: 'destructive',
-          onPress: async () => {
-            try {
-              setLoading(true);
-              const { error } = await supabase
-                .from('emergency_contacts')
-                .delete()
-                .eq('id', id)
-                .eq('user_id', user.id);
-
-              if (error) {
-                console.error('Error deleting contact:', error);
-                Alert.alert('Error', 'Failed to delete contact');
-                return;
-              }
-
-              // Remove from local state
-              setContacts(contacts.filter((contact) => contact.id !== id));
-            } catch (error) {
-              console.error('Error deleting contact:', error);
-              Alert.alert('Error', 'Failed to delete contact');
-            } finally {
-              setLoading(false);
-            }
-          },
-        },
-      ]
-    );
+    setContacts(contacts.filter((contact) => contact.id !== id));
+    setLoading(false);
   };
 
   const handleCall = (phone: string) => {
-    const phoneUrl = `tel:${phone}`;
-    Linking.canOpenURL(phoneUrl)
-      .then((supported) => {
-        if (supported) {
-          return Linking.openURL(phoneUrl);
-        } else {
-          Alert.alert('Error', 'Phone calls are not supported on this device');
-        }
-      })
-      .catch((err) => console.error('Error opening phone dialer:', err));
+    Linking.openURL(`tel:${phone}`);
   };
 
   const renderContactItem = ({ item }: { item: Contact }) => (
@@ -274,33 +191,23 @@ export default function EmergencyContacts() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Emergency Contacts</Text>
-        {user && (
-          <TouchableOpacity
-            onPress={() => setIsAdding(!isAdding)}
-            style={styles.addButton}
-            disabled={loading}
-          >
-            {isAdding ? (
-              <Text style={styles.addButtonText}>Cancel</Text>
-            ) : (
-              <View style={styles.addButtonContent}>
-                <AntDesign name="plus" size={24} color="white" />
-                <Text style={styles.addButtonText}>Add</Text>
-              </View>
-            )}
-          </TouchableOpacity>
-        )}
+        <TouchableOpacity
+          onPress={() => setIsAdding(!isAdding)}
+          style={styles.addButton}
+          disabled={loading}
+        >
+          {isAdding ? (
+            <Text style={styles.addButtonText}>Cancel</Text>
+          ) : (
+            <View style={styles.addButtonContent}>
+              <AntDesign name="plus" size={24} color="white" />
+              <Text style={styles.addButtonText}>Add</Text>
+            </View>
+          )}
+        </TouchableOpacity>
       </View>
 
-      {!user && (
-        <View style={styles.loginPrompt}>
-          <Text style={styles.loginPromptText}>
-            Sign in to add your own emergency contacts
-          </Text>
-        </View>
-      )}
-
-      {isAdding && user && (
+      {isAdding && (
         <View style={styles.addContactContainer}>
           <TextInput
             style={styles.input}
@@ -346,12 +253,16 @@ export default function EmergencyContacts() {
         </View>
       )}
 
-      <FlatList
-        data={contacts}
-        renderItem={renderContactItem}
-        keyExtractor={(item) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-      />
+      {fetching ? (
+        <ActivityIndicator size="large" color="#6b46c1" />
+      ) : (
+        <FlatList
+          data={contacts}
+          renderItem={renderContactItem}
+          keyExtractor={(item) => item.id}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 }
