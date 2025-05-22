@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'expo-router'
+import LoginPage from '@/components/login'
 
 
 export default function Signup({ onLoginPress }: { onLoginPress?: () => void }) {
@@ -32,7 +33,7 @@ export default function Signup({ onLoginPress }: { onLoginPress?: () => void }) 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Signup</Text>
+      <Text style={styles.title}>Sign Up</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter your email"
@@ -65,11 +66,11 @@ export default function Signup({ onLoginPress }: { onLoginPress?: () => void }) 
         onPress={handleSignup}
         disabled={loading}
       >
-        <Text style={styles.buttonText}>Signup</Text>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
       <Text style={styles.footer}>
         Already have an acount?{' '}
-       <Text style={styles.link} onPress={() => router.push('@/components/login')}>
+       <Text style={styles.link} onPress={() => router.push('/components/login')}>
           Login
       </Text>
       </Text>
@@ -80,8 +81,9 @@ export default function Signup({ onLoginPress }: { onLoginPress?: () => void }) 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    margin: 16,
-    marginTop: 40,
+    height:'100%',
+    margin: 1,
+    marginTop:0,
     borderRadius: 12,
     padding: 24,
     alignItems: 'stretch',
