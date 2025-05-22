@@ -113,7 +113,7 @@ export default function Auth() {
         <TouchableOpacity
           style={[styles.button, loading && styles.buttonDisabled]}
           disabled={loading}
-          onPress={signInWithEmail}
+          onPress={signUpWithEmail}
         >
           <Text style={styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
